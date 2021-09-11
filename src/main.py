@@ -5,9 +5,9 @@ pygame.init()
 
 # Screen dimensions and pixel size are deeply related, so they are grouped together here.
 # The program will crash if these parameters do not afford a complete tiling by tiles of pixel_size X pixel_size
-SCREEN_HEIGHT = 800  # set these screen variables to a multiple of pixel_size
-SCREEN_WIDTH = 800
-pixel_size = 100
+SCREEN_HEIGHT: int = 800  # set these screen variables to a multiple of pixel_size
+SCREEN_WIDTH: int = 800
+pixel_size: int = 100
 
 # test if pixels tile the screen completely
 assert SCREEN_WIDTH % pixel_size == 0 and SCREEN_HEIGHT % pixel_size == 0, \
@@ -23,7 +23,6 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # preset board templates
-
 vertical_stripe_board = [[i % 2] * (SCREEN_WIDTH // pixel_size)  # 1 is alive, 0 is dead
                          for i in range(SCREEN_HEIGHT // pixel_size)]
 empty_board = [[0] * (SCREEN_WIDTH // pixel_size)  # 1 is alive, 0 is dead
@@ -39,7 +38,6 @@ class Board:
         self.n_cols = SCREEN_WIDTH // pixel_size
         self.n_rows = SCREEN_HEIGHT // pixel_size
         self.state = [[0] * self.n_cols for i in range(self.n_rows)]
-
 
     def draw(self):
         for x in range(self.n_cols):
@@ -75,7 +73,7 @@ class Board:
             neighbors = [self.state[x + a][y + b] for a in [0, 1, -1] for b in [0, 1, -1]]
         total = sum(neighbors[1:])
 
-        if not alive:   # returning 1 means cell alive next time-step. Returning 0 means dead.
+        if not alive:  # returning 1 means cell alive next time-step. Returning 0 means dead.
             if total == 3:
                 return 1
             else:
