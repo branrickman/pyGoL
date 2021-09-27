@@ -1,0 +1,11 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI test
+on: [push]
+jobs:
+  printhw:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: run hw
+      run: echo Hello, world!
